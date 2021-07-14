@@ -1,8 +1,4 @@
-from contextlib import AbstractContextManager
-from typing import Callable
 from typing import List, Optional
-
-from sqlalchemy.orm import Session
 
 from db.db import db
 from models.departamentos import Departamentos

@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from starlette import status
 
 from schemas.localidades_schemas import LocalidadesSchema, \
-    LocalidadesSchemaSimple
+    LocalidadesSchemaSimple, ResponseGetAllSchemas
 from services.localidades_service import LocalidadesService
 from fastapi_pagination import Page, paginate
 
@@ -11,18 +11,21 @@ router = APIRouter()
 
 @router.get("",
             name="Localidades",
-            status_code=status.HTTP_200_OK)
+            status_code=status.HTTP_200_OK,
+            response_model=ResponseGetAllSchemas)
 async def get():
-    return LocalidadesService.get_all()
+    return {'data': LocalidadesService.get_all()}
 
 
 @router.get("/departamento/{departamento_id}",
             name="Localidades de un departamento",
-            status_code=status.HTTP_200_OK)
+            status_code=status.HTTP_200_OK,
+            response_model=ResponseGetAllSchemas)
 async def get_all_from_departament(departament_id: int):
-    return LocalidadesService.get_all_from_departament(
+    return {'data': LocalidadesService.get_all_from_departament(
         departament_id=departament_id
-    )
+        )
+    }
 
 
 @router.get("/{id}",

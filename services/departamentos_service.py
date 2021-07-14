@@ -1,9 +1,11 @@
+from typing import List, Optional
+
+from fastapi import HTTPException
+
+from db.db import db
+from models.departamentos import Departamentos
 from repository.departamentos_repository import DepartamentoRepository
 from repository.provicias_repository import ProvinciaRepository
-from typing import Optional, List
-from models.departamentos import Departamentos
-from fastapi import HTTPException
-from db.db import db
 
 
 class DepartamentoService:

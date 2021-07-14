@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from starlette import status
 
 from schemas.departamentos_schemas import DepartamentoSchema, \
-    DepartamentosSchemaSimple
+    DepartamentosSchemaSimple, ResponseGetAllSchemas
 from services.departamentos_service import DepartamentoService
 
 router = APIRouter()
@@ -10,16 +10,21 @@ router = APIRouter()
 
 @router.get("",
             name="Departamentos",
-            status_code=status.HTTP_200_OK)
+            status_code=status.HTTP_200_OK,
+            response_model=ResponseGetAllSchemas)
 async def get():
-    return DepartamentoService.get_all()
+    return {'data': DepartamentoService.get_all()}
 
 
 @router.get("/province/{province_id}",
             name="Departamentos",
-            status_code=status.HTTP_200_OK)
+            status_code=status.HTTP_200_OK,
+            response_model=ResponseGetAllSchemas)
 async def get_all_from_province(province_id: int):
-    return DepartamentoService.get_all_from_province(province_id=province_id)
+    return {
+        'data': DepartamentoService.get_all_from_province(
+            province_id=province_id)
+    }
 
 
 @router.get("/{id}",
@@ -27,7 +32,6 @@ async def get_all_from_province(province_id: int):
             status_code=status.HTTP_200_OK,
             response_model=DepartamentoSchema)
 async def get_one(id):
-    print("hola")
     return DepartamentoService.get_one(id)
 
 

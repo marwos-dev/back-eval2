@@ -1,3 +1,5 @@
+from typing import List
+
 from pydantic import BaseModel
 
 
@@ -14,3 +16,7 @@ class LocalidadesSchema(LocalidadesSchemaSimple):  # noqa
 
     class Config:
         orm_mode = True
+
+
+class ResponseGetAllSchemas(BaseModel):
+    data: List[LocalidadesSchema]

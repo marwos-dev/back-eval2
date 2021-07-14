@@ -1,10 +1,10 @@
-from fastapi import FastAPI, APIRouter, Request
 import uvicorn
+from fastapi import APIRouter, FastAPI
 
 # Controladores
-from controllers.provincias_controllers import router as provincia_router
 from controllers.departamentos_controllers import router as departamento_router
 from controllers.localidades_controllers import router as localidade_router
+from controllers.provincias_controllers import router as provincia_router
 
 # Aplicacion
 app = FastAPI()
@@ -27,7 +27,5 @@ app.include_router(localidade_router,
                    tags=["Localidades"],
                    prefix="/localidades")
 
-
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
-

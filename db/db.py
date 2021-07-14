@@ -1,7 +1,9 @@
+import os
+
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import os
+
 SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://marwos:{os.getenv('PWSQL')}@localhost/evaluacion2"
 
 engine = create_engine(
@@ -10,6 +12,3 @@ engine = create_engine(
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 db = SessionLocal()
 Base = declarative_base()
-
-
-

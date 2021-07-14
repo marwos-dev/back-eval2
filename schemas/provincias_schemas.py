@@ -1,6 +1,6 @@
-from typing import List, Optional
-from pydantic import BaseModel, ValidationError, validator, EmailStr
-from validator.provincia_validator import Validador_Provincia
+from typing import List
+
+from pydantic import BaseModel
 
 
 class ProvinciaSchema(BaseModel):
@@ -16,3 +16,7 @@ class ProvinciasSchemaSimple(BaseModel):
    
     class Config:
         orm_mode = True
+
+
+class ResponseGetAllSchemas(BaseModel):
+    data: List[ProvinciaSchema]
